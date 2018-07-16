@@ -11,9 +11,9 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    var resultCodeTextView: TextView? = null
     var translateBtn: Button? = null
     var inputText: EditText? = null
+    var resultCodeEditText: EditText? = null
 
     fun Context.toast(message: CharSequence) =
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -22,14 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        resultCodeTextView = findViewById (R.id.resultCodeTextView) as TextView
         translateBtn = findViewById (R.id.translateBtn) as Button
         inputText = findViewById (R.id.inputText) as EditText
+        resultCodeEditText = findViewById (R.id.resultCodeEditText) as EditText
 
         translateBtn?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
-                val getText = inputText?.text.toString()
-                toast(getText)
+                val getText = inputText?.text.toString().toUpperCase()
+                //toast(getText)
                 val charArr = getText.toCharArray()
                 var newStr = ""
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                             newStr += it.toString()
                         }
                     }
-                    resultCodeTextView?.setText(newStr)
+                    resultCodeEditText?.setText(newStr)
                 }
             }
         })
